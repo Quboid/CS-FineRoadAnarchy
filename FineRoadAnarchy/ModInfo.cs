@@ -4,7 +4,7 @@ using ICities;
 using System;
 using System.Reflection;
 
-[assembly: AssemblyVersion("2.0.2.1")]
+[assembly: AssemblyVersion("2.0.2.3")]
 namespace FineRoadAnarchy
 {
     public class ModInfo : IUserMod
@@ -58,10 +58,15 @@ namespace FineRoadAnarchy
 
         public static string Version
         {
-            get {
-                if (typeof(ModInfo).Assembly.GetName().Version.Minor == 0 && typeof(ModInfo).Assembly.GetName().Version.Build == 0)
+            get
+            {
+                if (typeof(ModInfo).Assembly.GetName().Version.Minor == 0 && typeof(ModInfo).Assembly.GetName().Version.Build == 0 && typeof(ModInfo).Assembly.GetName().Version.Revision == 0)
                 {
                     return typeof(ModInfo).Assembly.GetName().Version.Major.ToString();
+                }
+                if (typeof(ModInfo).Assembly.GetName().Version.Revision > 0)
+                {
+                    return FullVersion;
                 }
                 if (typeof(ModInfo).Assembly.GetName().Version.Build > 0)
                 {
